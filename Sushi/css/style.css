@@ -1,0 +1,156 @@
+body {
+    background-color: #d5f46b;
+}
+
+.site-wrapper {
+    background-color: #fff;
+    max-width: 980px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    box-shadow: 0 0 24px rgba(0,0,0,.8);
+    padding: 0;
+    margin-bottom: 50px;
+}
+
+.header-wrapper {
+    color: #fff;
+    background-color: #535353;
+}
+
+.title-wrapper {
+    padding: 30px 0;
+}
+
+.title {
+    color: #d5f46b;
+    font-size: 47px;
+    font-weight: 500;
+}
+
+.subtitle {
+    font-size: 22px;
+    font-weight: 400;
+}
+
+.navbar {
+    overflow: visible;
+    font-family: 'Quattrocento Sans',Helvetica,Arial,sans-serif;
+    font-size: 16px;
+    background-color: #303030;
+    margin-left: -30px;
+    margin-right: -30px;
+}
+
+.nav li a {
+    text-decoration: none;
+}
+
+.nav li a {
+    color: #fff;
+    padding: 20px;
+}
+
+.nav li a:hover {
+    text-decoration: underline;
+}
+
+.nav li a:active {
+    font-size: 100%;
+    font-weight: 700;
+    box-shadow: 0 0 24px rgba(0,0,0,.8);
+}
+
+.image {
+    width: 100%;
+    border-radius: 20px;
+}
+
+.dot {
+    margin: 20px 0;
+    border-bottom: 3px dashed #53535341;
+}
+
+.content > img {
+    display: inline-block;
+    width: 40%;
+    height: 300px;
+    border-radius: 20px;
+}
+
+.text {
+    display: block;
+    float: right;
+    width: 60%;
+    padding: 10px;
+}
+
+.article {
+    margin-bottom: 20px;
+}
+
+#left {
+    width: 78%;
+    margin-top: 20px;
+    display: inline-block;
+}
+
+.heading {
+    padding-top: 30px;
+}
+
+#right {
+    margin-top: 20px;
+    margin-left: 15px;
+    width: 20%;
+    display: inline-block;
+    height: 120px;
+    border-radius: 5px;
+    box-shadow: 0 0 24px rgba(0,0,0,.8);
+}
+
+ul {
+    list-style-type: none;
+}
+
+ul li a {
+    color: #000;
+}
+
+a {
+    color: #000;
+}
+
+.footer-powered-by {
+    padding: 30px 0;
+}
+
+.content-wrapper {
+    padding: 30px;
+}
+
+.map {
+    width: 100%;
+    padding: 15px;
+}
+p {
+    padding: 10px;
+}
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+    #right, #left, .text {
+        width: 100%;
+        padding: 10px;
+    }
+    
+    .content > img{
+        width: 100%;
+        padding: 10px;
+    }
+}
+
+@media only screen and (max-width: 900px) {
+    #right, #left {
+        width: 100%;
+        padding: 10px;
+    }
+}

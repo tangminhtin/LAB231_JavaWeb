@@ -36,10 +36,16 @@ body {
     font-size: 25px;
 }
 
-.nav li a {
+#menu ul li a {
     padding: 10px 20px 20px 0px;
     text-decoration: none;
     color: #000;
+}
+
+.btn-menu {
+    border-radius: 20px;
+    padding: 10px 20px;
+    background-color: #e3dfd1;
 }
 
 .nav li a:hover {
@@ -148,4 +154,3 @@ ul {
 .date {
     text-align: right;
 }
-

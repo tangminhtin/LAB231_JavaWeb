@@ -4,6 +4,8 @@
     Author     : tangminhtin
 --%>
 
+<%@page import="java.util.ArrayList"%>
+<%@page import="DAO.UserDAO"%>
 <%@page import="Entity.User"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -28,10 +30,12 @@
             <p>Create a brand new user and add them to this site</p>
 
             <form action="UserController" method="POST">
+            <!--<form action="#" method="POST">-->
                 <div class="form-group row">
                     <label for="userID" class="col-sm-4 col-form-label">User ID</label>
                     <div class="col-sm-8">
                         <input name="userID" type="text" class="form-control" id="userID" required>
+                        <span class="text-danger " id="checkUserId"></span>
                     </div>
                 </div>
                 <div class="form-group row">
@@ -56,6 +60,7 @@
                     <label for="website" class="col-sm-4 col-form-label">Website</label>
                     <div class="col-sm-8">
                         <input name="website" type="text" class="form-control" id="website" required>
+                        <span class="text-danger " id="checkWebsite"></span>
                     </div>
                 </div>
                 <div class="form-group row">
@@ -89,7 +94,7 @@
                         </select>
                     </div>
                 </div>
-                <button name="btnCreate" value="add" type="submit" class="btn btn-primary btn-block">Add New User</button>
+                <button id="add" name="btnCreate" value="add" type="submit" class="btn btn-primary btn-block">Add New User</button>
             </form>
 
 
@@ -98,22 +103,74 @@
         <script src="js/jquery-slim.min.js"></script>
         <script src="js/bootstrap.js"></script>
         <script src="js/bootstrap.bundle.js"></script>
-        
+        <%
+            UserDAO udao = new UserDAO();
+            String users = "";
+            for(User u: udao.getUsers()) {
+                users += "$" + u.getUserID();
+            }
+        %>
+      
         <script>
+            var isPass = false;
+            var isUrl = false;
+            var isUser = false;
+            
             function checkPasswordMatch() {
                 var password = $("#password").val();
                 var confirmPassword = $("#confirm").val();
 
-                if (password != confirmPassword)
+                if (password !== confirmPassword) {
                     $("#checkPass").html("Passwords do not match!");
-                else
+                    isPass = false;
+                } else {
                     $("#checkPass").html("");
+                    isPass = true;
+                }
             }
-
+            
+            function checkUrl() {
+                var url = $('#website').val();
+                var re = /(http(s)?:\\)?([\w-]+\.)+[\w-]+[.com|.in|.org]+(\[\?%&=]*)?/;
+                if(re.test(url)) {
+                    $('#checkWebsite').html("");
+                    isUrl = true;
+                } else {
+                    $('#checkWebsite').html("Please enter a valid URL");
+                    isUrl = false;
+                }
+            }
+            
+            function checkUserId() {
+                var uInput = $('#userID').val();
+                let userStrings = "<%=users%>";
+                let users = userStrings.split("$");
+                for(let u of users) {
+                    if(u.toLowerCase() === uInput.toLowerCase() && uInput !== "") {
+                        $('#checkUserId').html("Account has been existed");
+                        isUser = false;
+                        break;
+                    } else {
+                        $('#checkUserId').html("");
+                        isUser = true;
+                    }
+                }
+            }
+            
             $(document).ready(function () {
                $("#confirm").keyup(checkPasswordMatch);
+               $("#website").keyup(checkUrl);
+               $("#userID").keyup(checkUserId);
             });
 
+            // check url
+            $(function () {
+                $('#add').click(function () {
+                    if(!isPass || !isUrl || !isUser) {
+                        return false;
+                    }
+                })
+            })
         </script>
     </body>
 </html>

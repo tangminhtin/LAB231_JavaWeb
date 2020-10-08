@@ -34,62 +34,62 @@
         %>
         <div class="container-fluid col-xl-8">
             <h1 class="alert alert-primary text-center">Show All User</h1>
-            
-            <form action="UserController" method="GET" class="form-inline">
-                <p class="text-primary col-xl-4">Welcome, <%= user.getUserID()%> <a class="text-info" href="UserController?logout=ok">Logout</a></p>
-                <div class="col-xl-4 mr-auto">
-                    <input id="btnSearch" name="search" class="mb-6" type="text" id="search">
-                    <button name="btnSearch" type="button" class="btn btn-primary mb-6">Search</button>
-                </div>
-                <% if(isAdmin) {%>
-                    <button name="btnSearch" type="submit" class="btn btn-success mb-4"><a href="create_user.jsp" class="text-white ">Add New User</a></button>
-                <% } %>
-            <!--</form>-->
-            
-            <!--<form action="UserController" method="GET">-->
-                <div class="form-inline">
-                    <div class="btn-group mr-auto" role="group">
-                        <button name="choice" value="all" type="submit" class="btn btn-primary">All (<%=udao.getSize()%>)</button>
-                        <button name="choice" value="admin" type="submit" class="btn btn-info">Administrator (<%=udao.getAd() %>)</button>
-                        <button name="choice" value="sub" type="submit" class="btn btn-secondary">Subscriber (<%=udao.getSub() %>)</button>
+            <div class="container">
+                <form action="UserController" method="GET" class="form-inline">
+                    <p class="text-primary col-xl-4">Welcome, <%= user.getUserID()%> <a class="text-info" href="UserController?logout=ok">Logout</a></p>
+                    <div class="col-xl-4 mr-auto">
+                        <input id="btnSearch" name="search" class="mb-6" type="text" id="search">
+                        <button name="btnSearch" type="button" class="btn btn-primary mb-6">Search</button>
                     </div>
-
                     <% if(isAdmin) {%>
-                        <div class="input-group mr-auto">
-                            <select name="cbRole" class="custom-select" id="cbRole">
-                              <option value="1">Change Role to Administrator</option>
-                              <option value="2">Change Role to Subscriber</option>
-                            </select>
-                            <div class="input-group-append">
-                                <button name="btnChange" value="change" class="btn btn-outline-secondary" type="submit">Change</button>
-                            </div>
-                        </div>
+                        <button name="btnSearch" type="submit" class="btn btn-success mb-4"><a href="create_user.jsp" class="text-white">Add New User</a></button>
                     <% } %>
-                    <table class="table table-striped">
-                        <thead>
-                            <tr>
-                                <th class="text-center"><input id="checkAll" name="checkAllUser" type="checkbox"/> Username</th>
-                                <th class="text-center">Name</th>
-                                <th class="text-center">Email</th>
-                                <th class="text-center">Role</th>
-                            </tr>
-                        </thead>
-                        <tbody id="tableUser">
-                            <%
-                                for(User u: users) { %>
-                                <tr>
-                                    <th><input name="cbUsers" type="checkbox" value="<%=u.getUserID()%>"><%=u.getUserID()%></th>
-                                    <td><%=u.getFirstname()%></td>
-                                    <td><%=u.getEmail()%></td>
-                                    <td><%=rdao.getRole(u.getRoleID())%></td>
-                                </tr>
-                            <% } %>
-                        </tbody>
-                    </table>
-                </div>
-            </form>
+                <!--</form>-->
 
-            
+                <!--<form action="UserController" method="GET">-->
+                    <div class="form-inline">
+                        <div class="btn-group mr-auto" role="group">
+                            <button name="choice" value="all" type="submit" class="btn btn-primary">All (<%=udao.getSize()%>)</button>
+                            <button name="choice" value="admin" type="submit" class="btn btn-info">Administrator (<%=udao.getAd() %>)</button>
+                            <button name="choice" value="sub" type="submit" class="btn btn-secondary">Subscriber (<%=udao.getSub() %>)</button>
+                        </div>
+                        <% if(isAdmin) {%>
+                            <div class="input-group float-right">
+                                <select name="cbRole" class="custom-select" id="cbRole">
+                                  <option value="1">Change Role to Administrator</option>
+                                  <option value="2">Change Role to Subscriber</option>
+                                </select>
+                                <div class="input-group-append">
+                                    <button name="btnChange" value="change" class="btn btn-outline-secondary" type="submit">Change</button>
+                                </div>
+                            </div>
+                        <% } %>
+                        <div class="container py-5">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center"><input id="checkAll" name="checkAllUser" type="checkbox"/> Username</th>
+                                        <th class="text-center">Name</th>
+                                        <th class="text-center">Email</th>
+                                        <th class="text-center">Role</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tableUser">
+                                    <%
+                                        for(User u: users) { %>
+                                        <tr>
+                                            <th><input name="cbUsers" type="checkbox" value="<%=u.getUserID()%>"><%=u.getUserID()%></th>
+                                            <td><%=u.getFirstname()%> <%=u.getLastname()%> </td>
+                                            <td><%=u.getEmail()%></td>
+                                            <td><%=rdao.getRole(u.getRoleID())%></td>
+                                        </tr>
+                                    <% } %>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </form>
+            </div>
         </div>
                         
                         

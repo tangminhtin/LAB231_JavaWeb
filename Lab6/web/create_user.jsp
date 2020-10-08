@@ -42,6 +42,7 @@
                     <label for="email" class="col-sm-4 col-form-label">Email address</label>
                     <div class="col-sm-8">
                         <input name="email" type="email" class="form-control" id="email" required>
+                        <span class="text-danger " id="checkEmail"></span>
                     </div>
                 </div>
                 <div class="form-group row">
@@ -115,6 +116,7 @@
             var isPass = false;
             var isUrl = false;
             var isUser = false;
+            var isEmail = false;
             
             function checkPasswordMatch() {
                 var password = $("#password").val();
@@ -157,16 +159,29 @@
                 }
             }
             
+            function checkEmail() {
+                var email = $('#email').val();
+                var re = /^([a-zA-Z0-9_\.\-\+])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+                if(re.test(email)) {
+                    isEmail = true;
+                    $('#checkEmail').html("");
+                } else {
+                    isEmail = false;
+                    $('#checkEmail').html("Please enter a valid email");
+                }
+            }
+            
             $(document).ready(function () {
                $("#confirm").keyup(checkPasswordMatch);
                $("#website").keyup(checkUrl);
                $("#userID").keyup(checkUserId);
+               $("#email").keyup(checkEmail);
             });
 
             // check url
             $(function () {
                 $('#add').click(function () {
-                    if(!isPass || !isUrl || !isUser) {
+                    if(!isPass || !isUrl || !isUser || !isEmail) {
                         return false;
                     }
                 })

@@ -135,7 +135,9 @@ public class UserController extends HttpServlet {
                 request.getSession().setAttribute("users", udao.getUsers());
                 response.sendRedirect("management.jsp");
             } else {
+                request.getSession().setAttribute("msg", "Your username or password incorrect!");
                 response.sendRedirect("index.jsp");
+//                request.getRequestDispatcher("index.jsp").forward(request, response);
             }
         }
         

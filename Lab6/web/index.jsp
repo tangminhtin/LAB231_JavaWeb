@@ -30,6 +30,16 @@
                         <input name="password" type="password" class="form-control" id="password" required>
                     </div>
                 </div>
+                <div class="form-group row">
+                    <p class="col-sm-8 text-danger ml-auto">
+                        <% 
+                            if (request.getSession().getAttribute("msg") != null) {
+                                out.print(request.getSession().getAttribute("msg"));
+                                request.getSession().setAttribute("msg", null);
+                            }
+                        %>
+                    </p>
+                </div>
                 <button name="btnLogin" value="login" type="submit" class="btn btn-primary btn-block">Login</button>
             </form>
         </div>
